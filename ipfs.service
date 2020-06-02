@@ -1,0 +1,14 @@
+[Unit]
+Description=IPFS daemon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ipfs
+Group=ipfs
+Environment=IPFS_PATH=/var/lib/ipfs
+ExecStart=/usr/bin/ipfs daemon --init $IPFS_DAEMON_ARGS
+
+[Install]
+WantedBy=multi-user.target
