@@ -1,10 +1,10 @@
 %bcond_with devel
 
 %global goipath github.com/ipfs/%{name}
-%global tag     v0.6.0
+%global tag     v0.7.0-rc1
 
 Name:           go-ipfs
-Version:        0.6.0
+Version:        0.7.0~rc.1
 Release:        1%{?dist}
 Summary:        IPFS implementation in Go
 
@@ -15,6 +15,9 @@ Source10:       ipfs.service
 Source11:       ipfs.sysusers
 
 %gometa
+
+# Temp
+BuildRequires: 	git
 
 BuildRequires:  fuse-devel
 BuildRequires:  pkgconfig(libssl)
@@ -121,6 +124,9 @@ install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 
 %changelog
+* Fri Aug 28 2020 ElXreno <elxreno@gmail.com> - 0.7.0~rc.1-1
+- Update to version 0.7.0-rc1
+
 * Sat Jun 20 2020 ElXreno <elxreno@gmail.com> - 0.6.0-1
 - Updated to version 0.6.0
 
