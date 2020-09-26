@@ -12,14 +12,14 @@ Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
 URL:            https://ipfs.io
-Source0:        https://github.com/ipfs/%{name}/releases/download/%{tag}/%{name}-source.tar.gz
+Source0:        https://github.com/ipfs/%{name}/releases/download/%{tag}/%{name}-source.tar.gz#/%{name}-%{version}.tar.gz
 Source10:       ipfs.service
 Source11:       ipfs.sysusers
 
 %gometa
 
 # Temp
-BuildRequires: 	git
+BuildRequires:  git
 
 BuildRequires:  fuse-devel
 BuildRequires:  pkgconfig(libssl)
