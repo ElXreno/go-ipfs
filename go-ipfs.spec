@@ -1,3 +1,5 @@
+%define _lto_cflags %{nil}
+
 %bcond_with devel
 
 %global goipath github.com/ipfs/%{name}
@@ -5,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -124,6 +126,9 @@ install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 
 %changelog
+* Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-2
+- Disable LTO
+
 * Wed Sep 23 2020 ElXreno <elxreno@gmail.com> - 0.7.0-1
 - Update to version 0.7.0
 
