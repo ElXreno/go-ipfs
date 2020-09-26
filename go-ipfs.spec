@@ -7,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.7.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -63,6 +63,7 @@ for f in cmd/ipfs/Rules.mk \
     sed \
         -e 's/\($(GOCC) list\) /\1 -mod=vendor /g' \
         -e 's/\(go fmt\) /\1 -mod=vendor /g' \
+        -e 's/\($(GOCC) build\) /\1 -mod=vendor /g' \
         -i $f
 done
 
@@ -126,6 +127,9 @@ install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 
 %changelog
+* Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-3
+- Fix offline build
+
 * Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-2
 - Disable LTO
 
