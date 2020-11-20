@@ -7,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.7.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -96,6 +96,8 @@ mkdir -p %{buildroot}%{_sharedstatedir}/ipfs
 install -D %SOURCE10 %{buildroot}%{_unitdir}/ipfs.service
 install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 
+install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+
 
 %pre
 %sysusers_create_package ipfs %SOURCE11
@@ -114,6 +116,7 @@ install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 %license LICENSE LICENSE-APACHE LICENSE-MIT
 %doc README.md CHANGELOG.md
 %{_bindir}/ipfs
+%{_sysconfdir}/bash_completion.d/%{name}
 %{_unitdir}/ipfs.service
 %{_sysusersdir}/ipfs.conf
 %dir %attr(775,ipfs,ipfs) %{_sharedstatedir}/ipfs
@@ -127,6 +130,9 @@ install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 
 %changelog
+* Fri Nov 20 22:19:38 +03 2020 ElXreno <elxreno@gmail.com> - 0.7.0-4
+- Add bash completion file
+
 * Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-3
 - Fix offline build
 
