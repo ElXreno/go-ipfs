@@ -3,11 +3,11 @@
 %bcond_with devel
 
 %global goipath github.com/ipfs/%{name}
-%global tag     v0.7.0
+%global tag     v0.8.0-rc1
 
 Name:           go-ipfs
-Version:        0.7.0
-Release:        4%{?dist}
+Version:        0.8.0~rc.1
+Release:        1%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -130,6 +130,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Thu Dec 10 10:10:12 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-1
+- Update to version 0.8.0-rc1
+
 * Fri Nov 20 22:19:38 +03 2020 ElXreno <elxreno@gmail.com> - 0.7.0-4
 - Add bash completion file
 
