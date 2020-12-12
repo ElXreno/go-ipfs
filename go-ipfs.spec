@@ -7,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.8.0~rc.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -130,6 +130,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Sat Dec 12 08:16:48 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-2
+- rebuilt
+
 * Thu Dec 10 10:10:12 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-1
 - Update to version 0.8.0-rc1
 
