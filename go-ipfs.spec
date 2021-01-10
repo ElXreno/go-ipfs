@@ -7,14 +7,15 @@
 
 Name:           go-ipfs
 Version:        0.8.0~rc.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
 URL:            https://ipfs.io
 Source0:        https://github.com/ipfs/%{name}/releases/download/%{tag}/%{name}-source.tar.gz#/%{name}-%{version}.tar.gz
 Source10:       ipfs.service
-Source11:       ipfs.sysusers
+Source11:       ipfs@.service
+Source12:       ipfs.sysusers
 
 %gometa
 
@@ -94,13 +95,14 @@ install -Dm755 cmd/ipfs/ipfs -t %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sharedstatedir}/ipfs
 
 install -D %SOURCE10 %{buildroot}%{_unitdir}/ipfs.service
-install -D %SOURCE11 %{buildroot}%{_sysusersdir}/ipfs.conf
+install -D %SOURCE11 %{buildroot}${_unitdir}/ipfs@.service
+install -D %SOURCE12 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 
 %pre
-%sysusers_create_package ipfs %SOURCE11
+%sysusers_create_package ipfs %SOURCE12
 
 %post
 %systemd_post ipfs.service
@@ -118,6 +120,7 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 %{_bindir}/ipfs
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_unitdir}/ipfs.service
+%{_unitdir}/ipfs@.service
 %{_sysusersdir}/ipfs.conf
 %dir %attr(775,ipfs,ipfs) %{_sharedstatedir}/ipfs
 
@@ -130,6 +133,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Sun Jan 10 09:31:46 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-3
+- Add user systemd service, hardening services
+
 * Sat Dec 12 08:16:48 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-2
 - rebuilt
 
