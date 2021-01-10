@@ -95,7 +95,7 @@ install -Dm755 cmd/ipfs/ipfs -t %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sharedstatedir}/ipfs
 
 install -D %SOURCE10 %{buildroot}%{_unitdir}/ipfs.service
-install -D %SOURCE11 %{buildroot}${_unitdir}/ipfs@.service
+install -D %SOURCE11 %{buildroot}%{_unitdir}/ipfs@.service
 install -D %SOURCE12 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
