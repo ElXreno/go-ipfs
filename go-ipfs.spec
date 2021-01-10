@@ -7,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.8.0~rc.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -133,6 +133,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Sun Jan 10 11:52:53 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-4
+- Drop MemoryDenyWriteExecute=true from services
+
 * Sun Jan 10 09:31:46 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-3
 - Add user systemd service, hardening services
 
