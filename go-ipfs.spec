@@ -7,7 +7,7 @@
 
 Name:           go-ipfs
 Version:        0.8.0~rc.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -17,6 +17,9 @@ Source10:       ipfs.service
 Source11:       ipfs-server.service
 Source12:       ipfs-user.service
 Source21:       ipfs.sysusers
+
+# Allows to make dnf install ipfs
+Provides:       ipfs
 
 %gometa
 
@@ -142,6 +145,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Wed Jan 13 21:31:04 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-6
+- Provides: ipfs
+
 * Wed Jan 13 21:29:47 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-5
 - Remove ipfs@.service, add user service
 
