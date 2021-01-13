@@ -7,15 +7,16 @@
 
 Name:           go-ipfs
 Version:        0.8.0~rc.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
 URL:            https://ipfs.io
 Source0:        https://github.com/ipfs/%{name}/releases/download/%{tag}/%{name}-source.tar.gz#/%{name}-%{version}.tar.gz
 Source10:       ipfs.service
-Source11:       ipfs@.service
-Source12:       ipfs.sysusers
+Source11:       ipfs-server.service
+Source12:       ipfs-user.service
+Source21:       ipfs.sysusers
 
 %gometa
 
@@ -95,23 +96,30 @@ install -Dm755 cmd/ipfs/ipfs -t %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sharedstatedir}/ipfs
 
 install -D %SOURCE10 %{buildroot}%{_unitdir}/ipfs.service
-install -D %SOURCE11 %{buildroot}%{_unitdir}/ipfs@.service
-install -D %SOURCE12 %{buildroot}%{_sysusersdir}/ipfs.conf
+install -D %SOURCE11 %{buildroot}%{_unitdir}/ipfs-server.service
+install -D %SOURCE12 %{buildroot}%{_userunitdir}/ipfs.service
+install -D %SOURCE21 %{buildroot}%{_sysusersdir}/ipfs.conf
 
 install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 
 %pre
-%sysusers_create_package ipfs %SOURCE12
+%sysusers_create_package ipfs %SOURCE21
 
 %post
 %systemd_post ipfs.service
+%systemd_post ipfs-server.service
+%systemd_user_post ipfs.service
 
 %preun
 %systemd_preun ipfs.service
+%systemd_preun ipfs-server.service
+%systemd_user_preun ipfs.service
 
 %postun
-%systemd_postun ipfs.service
+%systemd_postun_with_restart ipfs.service
+%systemd_postun_with_restart ipfs-server.service
+%systemd_user_postun_with_restart ipfs.service
 
 
 %files
@@ -120,7 +128,8 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 %{_bindir}/ipfs
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_unitdir}/ipfs.service
-%{_unitdir}/ipfs@.service
+%{_unitdir}/ipfs-server.service
+%{_userunitdir}/ipfs.service
 %{_sysusersdir}/ipfs.conf
 %dir %attr(775,ipfs,ipfs) %{_sharedstatedir}/ipfs
 
@@ -133,6 +142,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Wed Jan 13 21:29:47 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-5
+- Remove ipfs@.service, add user service
+
 * Sun Jan 10 11:52:53 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-4
 - Drop MemoryDenyWriteExecute=true from services
 

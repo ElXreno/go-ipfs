@@ -1,17 +1,11 @@
 [Unit]
-Description=IPFS daemon for %I
-Wants=network-online.target
-After=network-online.target
+Description=IPFS daemon
 
 [Service]
 Type=simple
-User=%i
-Group=%i
 ExecStart=/usr/bin/ipfs daemon --init $IPFS_DAEMON_ARGS
 
 # Hardening
-ProtectSystem=full
-PrivateTmp=true
 SystemCallArchitectures=native
 NoNewPrivileges=true
 

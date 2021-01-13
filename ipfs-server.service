@@ -1,0 +1,20 @@
+[Unit]
+Description=IPFS daemon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ipfs
+Group=ipfs
+Environment=IPFS_PATH=/var/lib/ipfs
+ExecStart=/usr/bin/ipfs daemon --init --init-profile server $IPFS_DAEMON_ARGS
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
