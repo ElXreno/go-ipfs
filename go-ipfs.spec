@@ -3,10 +3,10 @@
 %bcond_with devel
 
 %global goipath github.com/ipfs/%{name}
-%global tag     v0.8.0-rc2
+%global tag     v0.8.0
 
 Name:           go-ipfs
-Version:        0.8.0~rc.2
+Version:        0.8.0
 Release:        1%{?dist}
 Summary:        IPFS implementation in Go
 
@@ -145,6 +145,9 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
+* Fri Feb 19 2021 ElXreno <elxreno@gmail.com> - 0.8.0-1
+- Update to version 0.8.0
+
 * Fri Jan 29 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.2-1
 - Update to version 0.8.0-rc2
 
