@@ -15,7 +15,7 @@ Version:        %{basever}%{?rcnum:~rc%{rcnum}}
 Release:        %autorelease
 Summary:        IPFS implementation in Go
 
-License:        MIT and Apache-2.0
+License:        MIT and ASL 2.0
 URL:            https://ipfs.io
 Source0:        https://github.com/ipfs/%{name}/releases/download/%{tag}/%{name}-source.tar.gz#/%{name}-%{version}.tar.gz
 Source10:       ipfs.service
