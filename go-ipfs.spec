@@ -1,5 +1,7 @@
 %define _lto_cflags %{nil}
 
+%global debug_package %{nil}
+
 %bcond_with devel
 
 %global basever 0.10.0
