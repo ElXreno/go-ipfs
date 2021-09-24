@@ -2,12 +2,15 @@
 
 %bcond_with devel
 
+%global basever 0.10.0
+%global rcnum   1
+
 %global goipath github.com/ipfs/%{name}
-%global tag     v0.9.0-rc2
+%global tag     v%{basever}%{?rcnum:-rc%{rcnum}}
 
 Name:           go-ipfs
-Version:        0.9.0~rc.2
-Release:        1%{?dist}
+Version:        %{basever}%{?rcnum:~rc%{rcnum}}
+Release:        %autorelease
 Summary:        IPFS implementation in Go
 
 License:        MIT and Apache-2.0
@@ -145,65 +148,4 @@ install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_
 
 
 %changelog
-* Fri May 28 2021 ElXreno <elxreno@gmail.com> - 0.9.0~rc.2-1
-- Update to version 0.9.0-rc2
-
-* Fri May 14 2021 ElXreno <elxreno@gmail.com> - 0.9.0~rc.1-1
-- Update to version 0.9.0-rc1
-
-* Fri Feb 19 2021 ElXreno <elxreno@gmail.com> - 0.8.0-1
-- Update to version 0.8.0
-
-* Fri Jan 29 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.2-1
-- Update to version 0.8.0-rc2
-
-* Wed Jan 13 21:31:04 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-6
-- Provides: ipfs
-
-* Wed Jan 13 21:29:47 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-5
-- Remove ipfs@.service, add user service
-
-* Sun Jan 10 11:52:53 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-4
-- Drop MemoryDenyWriteExecute=true from services
-
-* Sun Jan 10 09:31:46 +03 2021 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-3
-- Add user systemd service, hardening services
-
-* Sat Dec 12 08:16:48 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-2
-- rebuilt
-
-* Thu Dec 10 10:10:12 +03 2020 ElXreno <elxreno@gmail.com> - 0.8.0~rc.1-1
-- Update to version 0.8.0-rc1
-
-* Fri Nov 20 22:19:38 +03 2020 ElXreno <elxreno@gmail.com> - 0.7.0-4
-- Add bash completion file
-
-* Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-3
-- Fix offline build
-
-* Sat Sep 26 2020 ElXreno <elxreno@gmail.com> - 0.7.0-2
-- Disable LTO
-
-* Wed Sep 23 2020 ElXreno <elxreno@gmail.com> - 0.7.0-1
-- Update to version 0.7.0
-
-* Fri Sep 11 2020 ElXreno <elxreno@gmail.com> - 0.7.0~rc.2-1
-- Update to version 0.7.0-rc2
-
-* Fri Aug 28 2020 ElXreno <elxreno@gmail.com> - 0.7.0~rc.1-1
-- Update to version 0.7.0-rc1
-
-* Sat Jun 20 2020 ElXreno <elxreno@gmail.com> - 0.6.0-1
-- Updated to version 0.6.0
-
-* Wed Jun 17 2020 ElXreno <elxreno@gmail.com> - 0.6.0~rc.7-1
-- Updated to version 0.6.0-rc7
-
-* Tue Jun 02 2020 ElXreno <elxreno@gmail.com> - 0.6.0~rc.1-1
-- Update to version 0.6.0-rc.1
-
-* Tue May 19 2020 gasinvein <gasinvein@gmail.com> - 0.5.1-0.2
-- Add systemd units
-
-* Mon May 18 2020 gasinvein <gasinvein@gmail.com> - 0.5.1-0.1
-- Initial package
+%autochangelog
