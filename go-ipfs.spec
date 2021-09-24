@@ -106,7 +106,9 @@ install -D %SOURCE11 %{buildroot}%{_unitdir}/ipfs-server.service
 install -D %SOURCE12 %{buildroot}%{_userunitdir}/ipfs.service
 install -D %SOURCE21 %{buildroot}%{_sysusersdir}/ipfs.conf
 
-install -D misc/completion/ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+# Generate bash completion
+%{buildroot}%{_bindir}/ipfs commands completion bash > ipfs-completion.bash
+install -D ipfs-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 
 %pre
