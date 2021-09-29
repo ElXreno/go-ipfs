@@ -5,7 +5,7 @@
 %bcond_with devel
 
 %global basever 0.10.0
-%global rcnum   1
+%global rcnum   2
 
 %global goipath github.com/ipfs/%{name}
 %global tag     v%{basever}%{?rcnum:-rc%{rcnum}}
